@@ -18,8 +18,9 @@ cmake_install.cmake
 Makefile
 CMakeFiles/
 
-#executable
-fouriertest
+#executables
+test
+*.a
 
 #geany files
 *.geany
