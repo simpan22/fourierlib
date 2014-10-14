@@ -87,7 +87,7 @@ void user_input(complx x[], int n)
 
 int main()
 {
-	int N							//the no. of elements in input
+	int N;							//the no. of elements in input
 	cout<<endl<<endl<<"Enter the no. of discreet points in the Input."<<endl;
 	cin>>N;
 	int k;	
