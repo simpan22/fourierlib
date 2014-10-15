@@ -7,15 +7,9 @@ This Program performs FFT and IDFT on a given set of discreet signal.
 
 #include <cmath>
 #include <iostream>
-
+#include "complex.h"
 using namespace std;
-
-  									//creating a custom data type for complex no.
-struct complx							//The discreet point signal set is represented here as an
-{										//	array of complx data types.
-	double real;
-	double imag;
-};				
+			
 										//function computes DFT for in[] and stores in out[].
 										//N is the no. of elements in in[] .
 void DFT(complx in[], complx out[], int N) 
@@ -30,9 +24,15 @@ void DFT(complx in[], complx out[], int N)
 		
 										//loop for summation from i=0 to i=N.
 		for (y = 0; y < N; y++) 
-		{			
-			summation.real+= in[y].real*cos(2*M_PI*y*x/N)+in[y].imag*sin(2*M_PI*y*x/N);
-			summation.imag+=-in[y].real*sin(2*M_PI*y*x/N)+in[y].imag*cos(2*M_PI*y*x/N);
+		{	
+			double angle = 2*M_PI*y*x/N;
+			
+			summation = add(summation,
+							makeComplx(in[y].real * cos(angle) + in[y].imag * sin(angle),
+										-in[y].real * sin(angle) + in[y].imag * cos(angle)));
+			
+			//summation.real += in[y].real * cos(angle) + in[y].imag * sin(angle);
+			//summation.imag += -in[y].real * sin(angle) + in[y].imag * cos(angle);
 		}
 		
 		out[x] = summation;
@@ -59,7 +59,6 @@ void IDFT(complx in[], complx out[], int N)
 	
 }
 
-										//Function to diplay the contents of an array of complx
 void display(complx x[], int n)
 {
 	for (int i = 0; i < n; i++)
