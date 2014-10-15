@@ -19,7 +19,7 @@ Makefile
 CMakeFiles/
 
 #executables
-test
+fouriertest
 *.a
 
 #geany files
